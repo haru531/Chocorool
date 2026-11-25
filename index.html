@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chocorool</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="logo">Chocorool</a>
+<button type="button" class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+  </header>
+  <!-- الخلفية المعتمة عند فتح القائمة -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+<!-- القائمة الجانبية -->
+<aside class="side-drawer" id="sideDrawer" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="drawer-brand">Chocorool</span>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="إغلاق القائمة">✕</button>
+  </div>
+
+  <nav class="drawer-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="bake.html">اخبز طلبك</a>
+    <a href="index.html#flavorsSection">نكهاتنا</a>
+    <a href="https://wa.me/" target="_blank" rel="noopener">تواصل معنا</a>
+  </nav>
+
+  <div class="drawer-footer">
+    <p>كوكيز طازجة إلى كل المحافظات السورية</p>
+  </div>
+</aside>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h1>كوكيز طازجة إلى كل المحافظات السورية</h1>
+        <p>نكهات عديدة وفريدة نخبزها لأجلك، وتصلك إلى باب منزلك.</p>
+        <a href="bake.html" class="btn btn-big">اخبز طلبك</a>
+      </div>
+      <video class="hero-cookie" src="videos/animtion1.mp4" autoplay muted loop playsinline poster="videos/animtion1.mp4"></video>
+    </section>
+
+    <section class="perks">
+      <div class="glow-item">
+        <span>توصيل مجاني</span>
+      </div>
+      <div class="glow-item">
+        <span>الدفع عند الاستلام</span>
+      </div>
+      <a href="#flavorsSection" class="flavors-btn">
+        <span>نكهات عديدة</span>
+      </a>
+    </section>
+
+    <section class="flavors-section" id="flavorsSection">
+      <div class="flavors-grid">
+        <article class="flavor">
+          <div class="flavor-inner">
+            <div class="flavor-front">
+              <h3>دبل شوكولا</h3>
+              <span>Double Chocolate</span>
+              <p>عجينة غنية بالكاكاو مع قطع شوكولا داكنة تذوب عند الخبز.</p>
+            </div>
+            <div class="flavor-back">
+              <img src="images/double-chocolate.jpg" alt="كوكيز دبل شوكولا">
+            </div>
+          </div>
+        </article>
+
+        <article class="flavor">
+          <div class="flavor-inner">
+            <div class="flavor-front">
+              <h3>كلاسيك</h3>
+              <span>Classic</span>
+              <p>وصفة كلاسيكية متوازنة بقوام طري من الداخل وحواف مقرمشة.</p>
+            </div>
+            <div class="flavor-back">
+              <img src="images/classic.jpg" alt="كوكيز كلاسيك">
+            </div>
+          </div>
+        </article>
+
+        <article class="flavor">
+          <div class="flavor-inner">
+            <div class="flavor-front">
+              <h3>ريد فلفت</h3>
+              <span>Red Velvet</span>
+              <p>نكهة مخملية بلون أحمر دافئ ولمسة كاكاو خفيفة ومميزة.</p>
+            </div>
+            <div class="flavor-back">
+              <img src="images/red-velvet.jpg" alt="كوكيز ريد فلفت">
+            </div>
+          </div>
+        </article>
+
+        <article class="flavor">
+          <div class="flavor-inner">
+            <div class="flavor-front">
+              <h3>لوتس</h3>
+              <span>Lotus</span>
+              <p>نكهة بسكويت الكراميل المتبّل بالقرفة مع قوام غني ودافئ.</p>
+            </div>
+            <div class="flavor-back">
+              <img src="images/lotus.jpg" alt="كوكيز لوتس">
+            </div>
+          </div>
+        </article>
+
+        <article class="flavor">
+          <div class="flavor-inner">
+            <div class="flavor-front">
+              <h3>كندر</h3>
+              <span>Kinder</span>
+              <p>مزيج ناعم من شوكولا الحليب والكريمة بطابع حلو ومحبب.</p>
+            </div>
+            <div class="flavor-back">
+              <img src="images/kinder.jpg" alt="كوكيز كندر">
+            </div>
+          </div>
+        </article>
+
+        <article class="flavor">
+          <div class="flavor-inner">
+            <div class="flavor-front">
+              <h3>ميني كوكيز</h3>
+              <span>Mini Cookies</span>
+              <p>قطع صغيرة سهلة المشاركة تحافظ على قوام الكوكيز ونكهته.</p>
+            </div>
+            <div class="flavor-back">
+              <img src="images/mini.jpg" alt="ميني كوكيز">
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

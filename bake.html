@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chocorool | اخبز طلبك</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/bake.css" />
+</head>
+<body>
+
+  <!-- شريط علوي موحد -->
+  <header class="bake-header">
+    <a href="index.html" class="brand">Chocorool</a>
+    <!-- داخل <header> -->
+<button type="button" class="menu-toggle" id="menuToggle" aria-label="فتح القائمة">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+  </header>
+  <!-- الخلفية المعتمة عند فتح القائمة -->
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+<!-- القائمة الجانبية -->
+<aside class="side-drawer" id="sideDrawer" aria-hidden="true">
+  <div class="drawer-header">
+    <span class="drawer-brand">Chocorool</span>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="إغلاق القائمة">✕</button>
+  </div>
+
+  <nav class="drawer-links">
+    <a href="index.html">الرئيسية</a>
+    <a href="bake.html">اخبز طلبك</a>
+    <a href="index.html#flavorsSection">نكهاتنا</a>
+    <a href="https://wa.me/" target="_blank" rel="noopener">تواصل معنا</a>
+  </nav>
+
+  <div class="drawer-footer">
+    <p>كوكيز طازجة إلى كل المحافظات السورية</p>
+  </div>
+</aside>
+
+  <main class="bake-stage">
+    <div class="stage-intro">
+      <h1>اصنع كوكيزك على ذوقك</h1>
+      <p id="stageInstruction">انقر على الزبديات لإضافة النكهات فوق العجينة</p>
+    </div>
+
+    <!-- المشهد الرئيسي: الطاولة + العجينة + الفرن -->
+    <section class="kitchen-workspace" id="kitchenWorkspace">
+
+      <!-- الطاولة والعجينة -->
+      <div class="table-area" id="tableArea">
+        <div class="wooden-table">
+          <!-- العجينة الأساسية -->
+          <div class="dough-wrapper" id="doughWrapper">
+            <div class="cookie-dough" id="cookieDough">
+              <div class="dough-texture"></div>
+              <!-- طبقة الإضافات التي تظهر عند النقر -->
+              <div class="toppings-layer" id="toppingsLayer"></div>
+            </div>
+            <!-- كرة العجينة المأخوذة للفرن -->
+            <div class="scooped-ball" id="scoopedBall"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- الفرن (يظهر عند بدء الخبز) -->
+      <div class="oven-area" id="ovenArea" aria-hidden="true">
+        <div class="oven-body">
+          <div class="oven-top-panel">
+            <span class="knob"></span>
+            <span class="knob"></span>
+            <div class="oven-timer" id="ovenTimer">00:04</div>
+            <span class="knob"></span>
+          </div>
+          <div class="oven-door" id="ovenDoor">
+            <div class="oven-window">
+              <div class="oven-glow" id="ovenGlow"></div>
+              <div class="baking-tray" id="bakingTray">
+                <div class="baking-cookie" id="bakingCookie"></div>
+              </div>
+            </div>
+            <div class="oven-handle"></div>
+          </div>
+        </div>
+        <p class="baking-status" id="bakingStatus">جاري تجهيز الفرن...</p>
+      </div>
+
+    </section>
+
+    <!-- زبديات النكهات -->
+    <section class="bowls-section" id="bowlsSection">
+      <div class="bowls-grid" id="bowlsGrid">
+        <!-- يتم توليد الزبديات من bake.js لسهولة التعديل والإضافة -->
+      </div>
+    </section>
+
+    <!-- شريط التحكم بالكمية والسعر وزر الخبز -->
+    <section class="order-controls" id="orderControls">
+      <div class="qty-box">
+        <span>عدد القطع:</span>
+        <div class="qty-buttons">
+          <button type="button" id="decreaseQty" aria-label="تقليل الكمية">−</button>
+          <strong id="qtyValue">1</strong>
+          <button type="button" id="increaseQty" aria-label="زيادة الكمية">+</button>
+        </div>
+      </div>
+      <div class="action-buttons">
+  <button type="button" class="reset-order-btn" id="resetOrderBtn">
+    إعادة تشكيل الطلب
+  </button>
+  <button type="button" class="bake-btn" id="startBakeBtn">
+    تشكيل وإدخال للفرن
+  </button>
+</div>
+
+      <div class="price-box">
+        <span>الإجمالي:</span>
+        <strong id="totalPrice">150 ل.س</strong>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ورقة الفاتورة المنبثقة -->
+  <div class="receipt-backdrop" id="receiptBackdrop" aria-hidden="true">
+    <div class="receipt-paper" role="dialog" aria-labelledby="receiptTitle">
+      <div class="receipt-check">✓</div>
+      <h2 id="receiptTitle">تم إتمام طلبك بنجاح!</h2>
+      <p class="receipt-sub">كوكيز طازجة قيد التحضير لأجلك</p>
+
+      <div class="receipt-divider"></div>
+
+      <div class="receipt-details" id="receiptDetails">
+        <!-- تفاصيل الطلب تُملأ تلقائياً -->
+      </div>
+
+      <div class="receipt-divider"></div>
+
+      <div class="receipt-meta">
+        <div class="meta-row">
+          <span>السعر الإجمالي:</span>
+          <strong id="receiptTotal">150 ل.س</strong>
+        </div>
+        <div class="meta-row">
+          <span>الوقت المتوقع:</span>
+          <strong id="receiptTime">25 - 35 دقيقة</strong>
+        </div>
+      </div>
+
+      <div class="receipt-actions">
+        <a href="#" target="_blank" rel="noopener" class="whatsapp-btn" id="whatsappOrderBtn">
+          تأكيد الطلب عبر واتساب
+        </a>
+        <button type="button" class="reset-btn" id="newOrderBtn">
+          تحضير طلب جديد
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/bake.js"></script>
+</body>
+</html>
