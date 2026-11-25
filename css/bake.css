@@ -1,0 +1,766 @@
+:root {
+  --bg-cream: #F5F2EB;
+  --surface-warm: #FAF7F2;
+  --beige-soft: #DEBAA0;
+  --caramel: #C39A77;
+  --choco-dark: #3E2723;
+  --choco-mid: #5D4037;
+  --text-muted: #7A6358;
+  --dough-base: #E6C18E;
+  --dough-shadow: #CCA068;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--bg-cream);
+  color: var(--choco-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* الهيدر */
+/* الهيدر */
+.bake-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 6%;
+  background: linear-gradient(180deg, #4E342E, #2E1B16);
+  border-bottom: 1px solid rgba(255, 253, 249, 0.14);
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFDF9;
+  text-decoration: none;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #FFFDF9;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 253, 249, 0.45);
+  transition: 0.2s ease;
+}
+
+.back-link:hover {
+  background: var(--caramel);
+  border-color: var(--caramel);
+  color: var(--choco-dark);
+}
+
+/* المسرح الرئيسي */
+.bake-stage {
+  flex: 1;
+  max-width: 960px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.stage-intro {
+  text-align: center;
+}
+
+.stage-intro h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.stage-intro p {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* منطقة الطاولة والفرن */
+.kitchen-workspace {
+  position: relative;
+  width: 100%;
+  min-height: 270px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-area {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.table-area.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  position: absolute;
+}
+
+.wooden-table {
+  width: min(520px, 94vw);
+  height: 230px;
+  background: radial-gradient(circle at 50% 40%, #E7C8A6, #C99E74);
+  border-radius: 50% / 42%;
+  box-shadow:
+    0 14px 0 #A87B51,
+    0 24px 35px rgba(62, 39, 35, 0.16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* العجينة */
+.dough-wrapper {
+  position: relative;
+  width: 165px;
+  height: 165px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cookie-dough {
+  width: 155px;
+  height: 155px;
+  border-radius: 48% 52% 50% 49% / 51% 48% 52% 49%;
+  background: radial-gradient(circle at 35% 30%, #F1D3A4, var(--dough-base) 65%, var(--dough-shadow));
+  box-shadow:
+    inset 0 -8px 14px rgba(139, 94, 52, 0.28),
+    0 10px 18px rgba(62, 39, 35, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease;
+}
+
+.cookie-dough.knead {
+  animation: kneadPulse 0.35s ease;
+}
+
+@keyframes kneadPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.07, 0.94); }
+  100% { transform: scale(1); }
+}
+
+.toppings-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.topping-bit {
+  position: absolute;
+  border-radius: 40% 60% 55% 45%;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.22);
+  animation: dropBit 0.35s cubic-bezier(0.2, 1.3, 0.4, 1) forwards;
+}
+
+@keyframes dropBit {
+  from {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* كرة العجينة المأخوذة */
+.scooped-ball {
+  position: absolute;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #F1D3A4, var(--dough-base));
+  box-shadow: 0 8px 16px rgba(62, 39, 35, 0.28);
+  opacity: 0;
+  transform: scale(0.4);
+  pointer-events: none;
+}
+
+.scooped-ball.scooping {
+  animation: scoopAction 1.1s ease forwards;
+}
+
+@keyframes scoopAction {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) translateY(0);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.05) translateY(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(0.95) translateY(-30px);
+  }
+}
+
+/* الزبديات */
+.bowls-section {
+  width: 100%;
+  transition: opacity 0.45s ease, transform 0.45s ease, max-height 0.45s ease;
+}
+
+.bowls-section.vanish {
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+  pointer-events: none;
+}
+
+.bowls-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.85rem;
+}
+
+.bowl-card {
+  background: var(--surface-warm);
+  border: 2px solid transparent;
+  border-radius: 18px;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(62, 39, 35, 0.06);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  user-select: none;
+}
+
+.bowl-card:hover {
+  transform: translateY(-4px);
+}
+
+.bowl-card.active {
+  border-color: var(--choco-dark);
+  background: #EFE7DC;
+}
+
+.bowl-card.pop {
+  animation: bowlHop 0.3s ease;
+}
+
+@keyframes bowlHop {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+.bowl-svg {
+  width: 66px;
+  height: 54px;
+}
+
+.bowl-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--choco-dark);
+}
+
+.bowl-tag {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* شريط التحكم السفلي */
+.order-controls {
+  width: 100%;
+  background: var(--surface-warm);
+  border: 1px solid rgba(195, 154, 119, 0.35);
+  border-radius: 20px;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  transition: opacity 0.35s ease;
+}
+
+.order-controls.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.qty-box, .price-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.98rem;
+}
+
+.qty-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-cream);
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+}
+
+.qty-buttons button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: var(--caramel);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.price-box strong {
+  font-size: 1.15rem;
+  color: var(--choco-dark);
+}
+
+.bake-btn {
+  background: var(--choco-dark);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.bake-btn:hover {
+  background: var(--choco-mid);
+  transform: translateY(-2px);
+}
+
+/* مشهد الفرن */
+.oven-area {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  animation: fadeInScale 0.5s ease forwards;
+}
+
+.oven-area.visible {
+  display: flex;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.oven-body {
+  width: min(320px, 88vw);
+  background: linear-gradient(180deg, #4A3832, #2F221E);
+  border-radius: 22px;
+  padding: 1rem;
+  box-shadow: 0 18px 34px rgba(62, 39, 35, 0.28);
+  border: 3px solid #6D534A;
+}
+
+.oven-top-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.75rem;
+}
+
+.knob {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #D7CCC8;
+  border: 2px solid #8D6E63;
+}
+
+.oven-timer {
+  background: #1B1210;
+  color: #FFB74D;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 8px;
+  letter-spacing: 1px;
+}
+
+.oven-door {
+  background: #1E1614;
+  border-radius: 14px;
+  padding: 0.85rem;
+  border: 2px solid #5D4037;
+}
+
+.oven-window {
+  height: 135px;
+  background: #261C19;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 16px;
+}
+
+.oven-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 60%, rgba(255, 145, 0, 0.55), rgba(255, 87, 34, 0.15) 70%, transparent);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.oven-glow.on {
+  opacity: 1;
+}
+
+.baking-tray {
+  width: 150px;
+  height: 10px;
+  background: #90A4AE;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  transform: translateX(180px);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.baking-tray.inside {
+  transform: translateX(0);
+}
+
+.baking-cookie {
+  width: 64px;
+  height: 36px;
+  background: var(--dough-base);
+  border-radius: 50% 50% 35% 35%;
+  position: absolute;
+  bottom: 8px;
+  transition: background 2.5s ease, transform 2.5s ease;
+}
+
+.baking-cookie.baked {
+  background: #B97A45;
+  transform: scale(1.16, 0.92);
+}
+
+.oven-handle {
+  height: 8px;
+  width: 70%;
+  margin: 0.75rem auto 0;
+  background: #D7CCC8;
+  border-radius: 999px;
+}
+
+.baking-status {
+  font-weight: 700;
+  color: var(--choco-dark);
+  font-size: 1rem;
+}
+
+/* ورقة الفاتورة المنبثقة */
+.receipt-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(46, 29, 24, 0.58);
+  backdrop-filter: blur(3px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  z-index: 100;
+}
+
+.receipt-backdrop.show {
+  display: flex;
+}
+
+.receipt-paper {
+  background: #FFFDF9;
+  width: min(410px, 95vw);
+  border-radius: 16px;
+  padding: 1.6rem 1.4rem;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  position: relative;
+  animation: receiptPop 0.45s cubic-bezier(0.2, 1.25, 0.4, 1) forwards;
+  border-top: 6px solid var(--caramel);
+}
+
+@keyframes receiptPop {
+  from { opacity: 0; transform: translateY(35px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.receipt-check {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.6rem;
+  border-radius: 50%;
+  background: #2E7D32;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.receipt-paper h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.receipt-sub {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.receipt-divider {
+  border-top: 2px dashed #D7C6B8;
+  margin: 1rem 0;
+}
+
+.receipt-details {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--choco-mid);
+}
+
+.receipt-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.receipt-actions {
+  margin-top: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.whatsapp-btn {
+  display: block;
+  text-decoration: none;
+  background: #25D366;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.72rem 1rem;
+  border-radius: 12px;
+  transition: 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+  background: #1EBE5D;
+}
+
+.reset-btn {
+  background: transparent;
+  border: 1px solid var(--caramel);
+  color: var(--choco-dark);
+  font-family: inherit;
+  font-weight: 700;
+  padding: 0.65rem 1rem;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* التجاوب مع الجوال */
+@media (max-width: 768px) {
+  .bowls-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .order-controls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .bowls-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* زر القائمة (الخطوط الثلاثة) */
+.menu-toggle {
+  background: transparent;
+  border: 1px solid rgba(246, 235, 221, 0.35);
+  border-radius: 8px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.menu-toggle:hover {
+  border-color: #C98B4B;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #F6EBDD;
+  border-radius: 2px;
+}
+
+/* الخلفية المعتمة */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(34, 20, 14, 0.52);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 998;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* القائمة الجانبية */
+.side-drawer {
+  position: fixed;
+  top: 0;
+  left: 0; /* تفتح من اليسار لأن الشعار على اليمين في RTL */
+  width: min(290px, 80vw);
+  height: 100vh;
+  background: #FAF6F0;
+  color: #4A2C1D;
+  box-shadow: 8px 0 28px rgba(34, 20, 14, 0.22);
+  transform: translateX(-105%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.4rem;
+}
+
+.side-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(138, 106, 85, 0.25);
+}
+
+.drawer-brand {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #4A2C1D;
+}
+
+.drawer-close {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  color: #4A2C1D;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.drawer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  flex: 1;
+}
+
+.drawer-links a {
+  text-decoration: none;
+  color: #4A2C1D;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.drawer-links a:hover {
+  background: rgba(201, 139, 75, 0.18);
+  transform: translateX(-4px);
+}
+
+.drawer-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(138, 106, 85, 0.2);
+  font-size: 0.85rem;
+  color: #8A6A55;
+  text-align: center;
+}
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.reset-order-btn {
+  background: transparent;
+  color: var(--choco-dark);
+  border: 1.5px solid var(--caramel);
+  border-radius: 999px;
+  padding: 0.68rem 1.25rem;
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.reset-order-btn:hover {
+  background: rgba(195, 154, 119, 0.18);
+  transform: translateY(-2px);
+}
